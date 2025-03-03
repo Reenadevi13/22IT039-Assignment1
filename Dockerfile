@@ -1,17 +1,14 @@
-# Use Python base image
+# Use official Python image as base
 FROM python:3.9
 
-# Set the working directory
+# Set working directory inside container
 WORKDIR /app
 
-# Copy all files from the repository to the container
+# Copy all files to the working directory
 COPY . .
 
-# Install dependencies
-RUN pip install flask
+# Install necessary dependencies
+RUN pip install --no-cache-dir scikit-learn joblib flask
 
-# Expose the port Flask runs on
-EXPOSE 5000
-
-# Run the API
-CMD ["python", "personal-api.py"]
+# Run the model file
+CMD ["python", "ml-model.py"]
