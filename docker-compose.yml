@@ -1,0 +1,24 @@
+version: "3.8"
+
+services:
+  personal-api:
+    image: "sathyapm1006/22it046-personal-api"
+    ports:
+      - "5005:5000"  
+    restart: always
+
+  personal-api-2:
+    image: "meghasreek25/22it020-personal-api"
+    ports:
+      - "5505:5000"  
+    restart: always
+
+  ml-model:
+    build:
+      context: .
+      dockerfile: Dockerfile-ml-model  # Ensures it builds from your Dockerfile
+    image: "reenayasotha/1214214-ml-model:latest"
+    ports:
+      - "6000:6000"  
+    restart: always
+    command: ["python", "ml-model.py"]

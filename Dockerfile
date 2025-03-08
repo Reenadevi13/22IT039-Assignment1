@@ -1,20 +1,17 @@
-# Use an official Python runtime as a parent image
+# Use official Python image as base
 FROM python:3.9
 
-# Set the working directory in the container
+# Set working directory inside container
 WORKDIR /app
 
-# Copy the current directory contents into the container at /app
+# Copy all files to the working directory
 COPY . .
 
-# Install any needed packages specified in requirements.txt
-RUN pip install --no-cache-dir -r requirements.txt
+# Install necessary dependencies
+RUN pip install --no-cache-dir flask
 
-# Make port 5000 available to the world outside this container
+# Expose port 5000
 EXPOSE 5000
 
-# Define environment variable
-ENV NAME World
-
-# Run personal-api.py when the container launches
+# Run the Flask app
 CMD ["python", "personal-api.py"]
